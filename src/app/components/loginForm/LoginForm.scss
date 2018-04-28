@@ -1,0 +1,28 @@
+.login-form {
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    
+    input {
+      border: none;
+      font-size: 15px;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: transparent;
+
+      &:focus {
+        outline: none;
+        border-bottom: 1px #2B8FF9 solid;
+      }
+    }
+  }
+
+  input.submit-btn {
+    background-color: transparent;
+    text-align: left;
+    color: blue;
+  }
+}
