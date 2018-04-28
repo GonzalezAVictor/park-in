@@ -5,6 +5,7 @@ import AssociateLogin from './app/associateLogin/AssociateLogin';
 import AssociateRegister from './app/associateRegister/AssociateRegister';
 import UserLogin from './app/userLogin/UserLogin';
 import UserRegister from './app/userRegister/UserRegister';
+import ReservationConfirm from './app/reservationConfirm/ReservationConfirm';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/associate/register" component={AssociateRegister} />
           <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/user/register" component={UserRegister} />
+          <Route exact path="/reservation-confirm" component={ReservationConfirm} />
         </Switch>
       </BrowserRouter>
     );
