@@ -5,7 +5,7 @@
   form {
     display: flex;
     flex-direction: column;
-    
+
     input {
       border: none;
       font-size: 15px;
@@ -23,6 +23,15 @@
   input.submit-btn {
     background-color: transparent;
     text-align: left;
+    margin-top: 16px;
     color: blue;
+    font-size: 20px;
+    width: 80vw;
+
+    &:focus {
+      background-color: #1784F9;
+      border-radius: 6px;
+      color: #FFFFFF;
+    }
   }
 }
