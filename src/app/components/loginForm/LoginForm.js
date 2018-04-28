@@ -24,22 +24,35 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
+    let { register } = this.props;
     return (
       <div className="login-form">
         <form  onSubmit={this.handleSubmit}>
           <input
             type="text"
-            name="name"
+            name="user"
             placeholder="usuario"
             onChange={this.handleUserChange}
           />
+          {
+            register ? <input
+            type="text"
+            name="email"
+            placeholder="correo"
+            onChange={this.handlePasswordChange}
+          /> : null
+          }
           <input
             type="password"
             name="password"
             placeholder="contraseña"
             onChange={this.handlePasswordChange}
           />
-          <input className="submit-btn" type="submit" value="Iniciar" />
+          <input
+            className="submit-btn"
+            type="submit"
+            value={register ? "Registrar" : "Iniciar"}
+          />
         </form>
       </div>
     );
