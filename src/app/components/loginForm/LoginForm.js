@@ -11,7 +11,16 @@ export default class LoginForm extends React.Component {
   }
 
   handleSubmit = (e) => {
+    const {user,password} = this.state;
+    const {register, send} = this.props;
+
     e.preventDefault();
+    
+    if( register )
+      send(user, e.target.email.value, password);
+    else
+      send(user, password)
+
     console.log('handleSubmit');
   }
 
