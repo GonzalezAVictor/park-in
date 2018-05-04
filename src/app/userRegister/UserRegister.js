@@ -6,9 +6,8 @@ import LoginForm from './../components/loginForm/LoginForm';
 export default class UserRegister extends React.Component {
 
   registerNewUser = (userName, email, password) => {
-    const userRef = email.split('@')[0]
-
-    firebase.database().ref(`users/borrowers/${userRef}`).set( {
+  
+    firebase.database().ref(`users/borrowers/${userName}`).set( {
       userName,
       email,
       password

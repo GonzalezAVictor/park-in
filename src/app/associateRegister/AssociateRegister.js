@@ -6,9 +6,8 @@ import LoginForm from './../components/loginForm/LoginForm';
 export default class AssociateRegister extends React.Component {
 
   registerNewAssociate = ( userName, email, password ) => {
-    const userRef = email.split('@')[0]
 
-    firebase.database().ref(`users/owners/${userRef}`).set( {
+    firebase.database().ref(`users/owners/${userName}`).set( {
       userName,
       email,
       password
