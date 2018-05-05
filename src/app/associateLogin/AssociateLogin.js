@@ -1,8 +1,23 @@
 import React from 'react';
+import firebase from 'firebase';
 import './AssociateLogin.scss';
 import LoginForm from './../components/loginForm/LoginForm';
 
 export default class AssociateLogin extends React.Component {
+
+  login = ( userName, password ) => {
+    firebase.database().ref(`users/owners/${userName}`).once('value')
+      .then( snapshot => {
+        const userInfo = snapshot.val()
+
+        if ( userInfo ) {
+          console.log('Se ha iniciado sesión :)');
+        } else {
+          console.log(`No se encontro al usuario ${userName} con las contraseña ${password}`);
+        }
+
+      } );
+  }
 
   render() {
     return (
