@@ -1,0 +1,24 @@
+.user-login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20%;
+  padding-left: 30px;
+  padding-right: 60px;
+  background-color: #FFFFFF;
+  color: #000000;
+
+  h1 {
+    color: #1784F9;
+    margin-bottom: 24px;
+  }
+
+  span {
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .welcome-quote {
+    opacity: .7;
+  }
+}
