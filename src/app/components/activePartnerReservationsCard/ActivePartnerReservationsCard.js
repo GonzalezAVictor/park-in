@@ -14,7 +14,15 @@ export default class ActivePartnerReservationsCard extends React.Component {
     updates['/active'] = false;
     updates['/finalized'] = true;
 
-    return firebase.database().ref(`users/owners/${user}/history/${itemRef}`).update(updates);
+    const reservationRef = firebase.database().ref(`users/owners/${user}/history/${itemRef}`);
+    reservationRef.update(updates);
+
+    reservationRef.on('value', snapshot => {
+      const {code, email} = snapshot.val()
+      const userRef = email.split('@')[0]
+
+      firebase.database().ref(`users/borrowers/${userRef}/history/${code}`).update({'/finalized': true, '/active': false})
+    })
   }
 
   render() {

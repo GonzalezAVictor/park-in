@@ -15,6 +15,14 @@ export default class UserReservations extends React.Component {
     this.state = {
       reservations: []
     }
+
+    const user = "Mobile";
+    const reservationsRef = firebase.database().ref(`users/borrowers/${user}/history`);
+
+    reservationsRef.on('child_changed', data => {
+      console.log(data);
+      this.loadData(user);
+    })
   }
 
   componentWillMount = () => {
@@ -22,18 +30,7 @@ export default class UserReservations extends React.Component {
     const isLogin = true;
 
     if (isLogin) {
-      firebase.database().ref(`users/borrowers/${user}/history`).once('value')
-        .then( snapshot => {
-          const response = snapshot.val();
-          const reservations = [];
-          
-          if (response) {
-            response.map(item => item !==null ? reservations.push(item) : ()=>{}  )
-            this.setState({reservations});
-          } else {
-            this.setState({reservations: []});
-          }
-        } )
+      this.loadData(user)
     } else {
       // REDIRECT TO LOGIN
       
@@ -58,6 +55,27 @@ export default class UserReservations extends React.Component {
       )));
     
     return reservationsCard;
+  }
+
+  loadData = (user) => {
+    firebase.database().ref(`users/borrowers/${user}/history`).once('value')
+      .then( snapshot => {
+        const response = snapshot.val();
+        const reservations = [];
+        console.log(response);
+        
+        if (response) {
+          for (var key in response) {
+            if (response.hasOwnProperty(key)) {
+                response[key]['finalized'] ? () => {} : reservations.push( response[key] )
+            }
+          }
+          
+          this.setState({reservations});
+        } else {
+          this.setState({reservations: []});
+        }
+      } )
   }
 
   render() {

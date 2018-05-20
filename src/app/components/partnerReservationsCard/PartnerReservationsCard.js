@@ -13,7 +13,15 @@ export default class PartnerReservationsCard extends React.Component {
     let updates = {};
     updates['/active'] = true;
 
-    return firebase.database().ref(`users/owners/${user}/history/${itemRef}`).update(updates);
+    const reservationRef = firebase.database().ref(`users/owners/${user}/history/${itemRef}`);
+    reservationRef.update(updates);
+
+    reservationRef.on('value', snapshot => {
+      const {code, email} = snapshot.val()
+      const userRef = email.split('@')[0]
+
+      firebase.database().ref(`users/borrowers/${userRef}/history/${code}`).update({'/active': true})
+    })
   }
 
   onCancel = () => {
@@ -23,7 +31,15 @@ export default class PartnerReservationsCard extends React.Component {
     let updates = {};
     updates['/finalized'] = true;
 
-    return firebase.database().ref(`users/owners/${user}/history/${itemRef}`).update(updates);
+    const reservationRef = firebase.database().ref(`users/owners/${user}/history/${itemRef}`);
+    reservationRef.update(updates);
+
+    reservationRef.on('value', snapshot => {
+      const {code, email} = snapshot.val()
+      const userRef = email.split('@')[0]
+
+      firebase.database().ref(`users/borrowers/${userRef}/history/${code}`).update({'/finalized': true, '/active': false})
+    })
   }
 
   render() {
