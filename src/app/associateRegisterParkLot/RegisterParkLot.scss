@@ -1,0 +1,79 @@
+.register-park-lot {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1784F9;
+  padding: 18px;
+
+  .park-lot-info-container {
+    padding-top: 32px;
+    border-radius: 6px;
+    background-color: white;
+    text-align: center;
+  }
+
+  h3 {
+    color: #95989A;
+    font-weight: 200;
+  }
+
+  .lugares-registrados {
+    margin-bottom: 40px;
+    margin-top: 40px;
+    color: white;
+    font-weight: 100;
+  }
+
+  .address {
+    color: #A9D1FB;
+    font-size: 11px;
+  }
+
+  .pl-registered {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    i {
+      color: #1784F9;
+    }
+
+    span {
+      font-size: 48px;
+      font-weight: 300;
+    }
+  }
+
+  .schedule {
+    border-top: 1px solid #EBEBEC;
+    border-bottom: 1px solid #EBEBEC;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    opacity: .7;
+
+    h5 {
+      margin: 0;
+      opacity: .8;
+    }
+  }
+
+  .amenidades {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    opacity: .6;
+  }
+
+  .icons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 18px;
+
+    i {
+      font-size: 24px;
+    }
+
+    .disabled {
+      opacity: .5;
+    }
+  }
+}

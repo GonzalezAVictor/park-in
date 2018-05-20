@@ -9,6 +9,7 @@ import AssociateRegister from './app/associateRegister/AssociateRegister';
 import UserLogin from './app/userLogin/UserLogin';
 import UserRegister from './app/userRegister/UserRegister';
 import ReservationConfirm from './app/reservationConfirm/ReservationConfirm';
+import AssociateParkLotRegister from './app/associateRegisterParkLot/RegisterParkLot';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path="/user/reservations" component={UserReservations} />
           <Route exact path="/associate/login" component={AssociateLogin} />
           <Route exact path="/associate/register" component={AssociateRegister} />
+          <Route exact path="/associate/parklot/register" component={AssociateParkLotRegister} />
           <Route exact path="/user/login" component={UserLogin} />
           <Route exact path="/user/register" component={UserRegister} />
           <Route exact path="/reservation-confirm" component={ReservationConfirm} />
