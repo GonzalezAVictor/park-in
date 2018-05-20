@@ -83,6 +83,7 @@ const MyMapComponent = compose(
                 const element = points[key]
                 marks.push( 
                   (<MarkerWithLabel
+                    key={`${element.lat}/${element.lng}`}
                     position={{ lat: element.lat, lng: element.lng }}
                     labelAnchor={new google.maps.Point(0, 0)}
                     labelStyle={{
