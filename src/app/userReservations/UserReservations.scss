@@ -36,3 +36,14 @@
     #reservations-main-text { font-size: 48px; }
   }
 }
+
+.footer {
+  width: 100%;
+  height: 8vh;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: space-between;
+  bottom: 0;
+}

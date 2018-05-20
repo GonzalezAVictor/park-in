@@ -14,7 +14,7 @@ export default class UserLogin extends React.Component {
           localStorage.setItem("isLogin", "true");
           localStorage.setItem("user", userName);
 
-          this.props.history.push('/user/reservations');
+          this.props.history.push('/user/search');
         } else {
           alert(`No se encontro al usuario ${userName} con las contraseña ${password}`);
         }

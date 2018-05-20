@@ -16,7 +16,7 @@ export default class UserRegister extends React.Component {
     localStorage.setItem("isLogin", "true");
     localStorage.setItem("user", userName);
 
-    this.props.history.push('/user/reservations');
+    this.props.history.push('/user/search');
   }
 
   render() {

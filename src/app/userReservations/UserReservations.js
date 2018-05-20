@@ -4,6 +4,7 @@ import firebase from 'firebase';
 
 //Components
 import UserReservationsCard from '../components/userReservationsCard/UserReservationsCard';
+import FooterNavbar from '../reservationConfirm/FooterNavbar';
 
 //Style
 require('./UserReservations.scss');
@@ -91,6 +92,11 @@ export default class UserReservations extends React.Component {
         <div id="cards-section">
           {reservationsCards}
         </div>
+
+        <div className="footer">
+          <FooterNavbar />
+        </div>
+        
       </div>
     );
   }
