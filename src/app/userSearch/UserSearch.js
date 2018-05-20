@@ -1,5 +1,6 @@
 /*global google*/
 import React from 'react';
+import firebase from 'firebase';
 import { compose, withProps, lifecycle } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import _ from 'lodash';
@@ -25,6 +26,9 @@ const MyMapComponent = compose(
 
       this.setState({
         bounds: null,
+        places: {},
+        placeSelected: {},
+        points: {},
         center: {
           lat: 20.9678151, lng: -89.6231869
         },
@@ -63,6 +67,43 @@ const MyMapComponent = compose(
           });
           // refs.map.fitBounds(bounds);
         },
+        handleInput: (e) => {
+          firebase.database().ref('parking_lots').endAt(e.target.value)
+          .on('value', snap => {
+            this.setState({points: snap.val()})
+          } )
+        },
+        getPoints: () => {
+          const {points} = this.state
+          const marks = [];
+
+          for (var key in points) {
+            if (points.hasOwnProperty(key)) {
+                console.log(points[key]);
+                const element = points[key]
+                marks.push( 
+                  (<MarkerWithLabel
+                    position={{ lat: element.lat, lng: element.lng }}
+                    labelAnchor={new google.maps.Point(0, 0)}
+                    labelStyle={{
+                      backgroundColor: "#0069d9", 
+                      fontSize: "20px", 
+                      padding: "4px",
+                      borderRadius: `3px`,
+                      color: "white",
+                      width:"90px"
+                    }}
+                  >
+                    <div>{element.price} p/hr</div>
+                   
+                  </MarkerWithLabel>) 
+                )
+            }
+          }
+          
+          //this.setState({center: {lat: lat, lng: lng}})
+          return marks;
+        }
       })
     },
   }),
@@ -83,6 +124,8 @@ const MyMapComponent = compose(
         <input
           type="text"
           placeholder="Encuentra un lugar"
+          name="search"
+          onChange={props.handleInput}
           style={{
             boxSizing: `border-box`,
             border: `1px solid transparent`,
@@ -99,20 +142,8 @@ const MyMapComponent = compose(
           }}
         />
       </SearchBox>
-      <MarkerWithLabel
-        position={{ lat: 20.9678151, lng: -89.6231869 }}
-        labelAnchor={new google.maps.Point(0, 0)}
-        labelStyle={{
-          backgroundColor: "#0069d9", 
-          fontSize: "20px", 
-          padding: "4px",
-          borderRadius: `3px`,
-          color: "white",
-          width:"90px"
-        }}
-      >
-        <div>$25 p/hr</div>
-      </MarkerWithLabel>
+
+      {props.getPoints()}
     {props.markers.map((marker, index) => <Marker key={index} position={marker.position} />)}
   </GoogleMap>
 );
