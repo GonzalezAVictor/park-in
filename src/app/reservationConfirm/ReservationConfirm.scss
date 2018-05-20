@@ -1,0 +1,76 @@
+.reservation-confirm-view {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1784F9;
+}
+
+.reservation-confirm-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 10;
+  color: #FFFFFF;
+}
+
+.reservation-confirm-footer {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFFFFF;
+
+  i {
+    font-size: 24px;
+    opacity: .5;
+  }
+}
+
+.reservation-confirm-modal {
+  flex: .8;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  padding-top: 24px;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  h3 {
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    color: #9FA2A3;
+  }
+
+  div.address {
+    color: #A3CDFA;
+    font-weight: 100;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  div.qr-string {
+    text-align: center;
+    color: #000000;
+  }
+
+  div.date-info {
+    border-top: solid 1px #EBEBEC;
+    border-bottom: solid 1px #EBEBEC;
+    text-align: center;
+    color: #656565;
+
+    h5 {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      text-align: center;
+      color: #6F6F6F;
+    }
+  }
+}

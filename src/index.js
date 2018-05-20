@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import firebase from 'firebase';
 import './index.scss'
 import App from './App';
 import firebase from 'firebase';
@@ -14,6 +15,7 @@ firebase.initializeApp( {
   storageBucket: "parkin-36e17.appspot.com",
   messagingSenderId: "1056606055525"
 } )
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
