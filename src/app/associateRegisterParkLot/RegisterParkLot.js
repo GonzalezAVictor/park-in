@@ -12,7 +12,9 @@ export default class RegisterParkLot extends React.Component {
           <span className="address">Calle 62 #238 Mérida Centro</span></h3>
           
           <div className="pl-registered">
-            - 8 +
+            <i class="fas fa-plus"></i>
+            <span>8</span>
+            <i class="fas fa-plus"></i>
           </div>
           <div className="schedule">
             <h5>Horario</h5>

@@ -6,6 +6,7 @@
   padding: 18px;
 
   .park-lot-info-container {
+    padding-top: 32px;
     border-radius: 6px;
     background-color: white;
     text-align: center;
@@ -13,16 +14,34 @@
 
   h3 {
     color: #95989A;
+    font-weight: 200;
   }
 
   .lugares-registrados {
     margin-bottom: 40px;
     margin-top: 40px;
+    color: white;
+    font-weight: 100;
   }
 
   .address {
     color: #A9D1FB;
     font-size: 11px;
+  }
+
+  .pl-registered {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    i {
+      color: #1784F9;
+    }
+
+    span {
+      font-size: 48px;
+      font-weight: 300;
+    }
   }
 
   .schedule {
