@@ -42,8 +42,8 @@ export default class UserReservations extends React.Component {
   }
 
   getReservations = () => {
-    const {reservations} = this.state
-    const reservationsCard = []
+    const {reservations} = this.state;
+    const reservationsCard = [];
 
     reservations.map( reservation => 
       reservationsCard.push((
@@ -57,7 +57,7 @@ export default class UserReservations extends React.Component {
         />
       )));
     
-    return reservationsCard
+    return reservationsCard;
   }
 
   render() {
