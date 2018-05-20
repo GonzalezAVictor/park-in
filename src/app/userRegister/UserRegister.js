@@ -12,6 +12,11 @@ export default class UserRegister extends React.Component {
       email,
       password
     } );
+
+    localStorage.setItem("isLogin", "true");
+    localStorage.setItem("user", userName);
+
+    this.props.history.push('/user/reservations');
   }
 
   render() {

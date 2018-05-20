@@ -11,9 +11,12 @@ export default class UserLogin extends React.Component {
         const userInfo = snapshot.val()
 
         if ( userInfo ) {
-          console.log('Se ha iniciado sesión :)');
+          localStorage.setItem("isLogin", "true");
+          localStorage.setItem("user", userName);
+
+          this.props.history.push('/user/reservations');
         } else {
-          console.log(`No se encontro al usuario ${userName} con las contraseña ${password}`);
+          alert(`No se encontro al usuario ${userName} con las contraseña ${password}`);
         }
 
       } );

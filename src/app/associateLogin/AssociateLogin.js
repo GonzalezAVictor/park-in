@@ -11,9 +11,13 @@ export default class AssociateLogin extends React.Component {
         const userInfo = snapshot.val()
 
         if ( userInfo ) {
-          console.log('Se ha iniciado sesión :)');
+          localStorage.setItem("isLogin", "true");
+          localStorage.setItem("user", userName);
+          localStorage.setItem("userType", "partner");
+
+          this.props.history.push('/partner/reservations');
         } else {
-          console.log(`No se encontro al usuario ${userName} con las contraseña ${password}`);
+          alert(`No se encontro al usuario ${userName} con las contraseña ${password}`);
         }
 
       } );
@@ -28,7 +32,7 @@ export default class AssociateLogin extends React.Component {
           Nosotoros nos encargamos de tu
           estacionamiento.
         </span>
-        <LoginForm />
+        <LoginForm send={this.login} />
       </div>
     );
   }

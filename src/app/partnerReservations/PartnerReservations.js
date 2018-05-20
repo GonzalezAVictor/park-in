@@ -18,8 +18,8 @@ export default class PartnerReservations extends React.Component {
       reservations: []
     }
 
-    const user = "ow"
-    const historyRef = firebase.database().ref(`users/owners/${user}/history`)
+    const user = localStorage.getItem("user");
+    const historyRef = firebase.database().ref(`users/owners/${user}/history`);
 
     historyRef.on('child_changed', data => {
       console.log(data);
@@ -28,11 +28,11 @@ export default class PartnerReservations extends React.Component {
   }
 
   componentWillMount = () => {
-    const user = "ow";
-    const isLogin = true;
-    const userType = "partner"
+    const user = localStorage.getItem("user");
+    const isLogin = localStorage.getItem("isLogin");
+    const userType = localStorage.getItem("userType")
 
-    if (isLogin && userType === "partner") {
+    if (isLogin === "true" && userType === "partner") {
       this.loadData(user)
     } else {
       // REDIRECT TO LOGIN

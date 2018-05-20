@@ -12,6 +12,12 @@ export default class AssociateRegister extends React.Component {
       email,
       password
     } );
+
+    localStorage.setItem("isLogin", "true");
+    localStorage.setItem("user", userName);
+    localStorage.setItem("userType", "partner");
+
+    this.props.history.push('/partner/reservations');
   }
 
   render() {

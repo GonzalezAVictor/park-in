@@ -16,7 +16,7 @@ export default class UserReservations extends React.Component {
       reservations: []
     }
 
-    const user = "Mobile";
+    const user = localStorage.getItem("user");
     const reservationsRef = firebase.database().ref(`users/borrowers/${user}/history`);
 
     reservationsRef.on('child_changed', data => {
@@ -26,10 +26,10 @@ export default class UserReservations extends React.Component {
   }
 
   componentWillMount = () => {
-    const user = "Mobile";
-    const isLogin = true;
+    const user = localStorage.getItem("user");
+    const isLogin = localStorage.getItem("isLogin");
 
-    if (isLogin) {
+    if (isLogin === "true") {
       this.loadData(user)
     } else {
       // REDIRECT TO LOGIN
