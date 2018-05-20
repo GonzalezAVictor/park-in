@@ -1,0 +1,38 @@
+.partner-reservations {
+  text-align: center;
+  background-color: black;
+  color: white;
+  height: -webkit-fill-available;
+
+  #reservations-main-text {
+    display: inline-block;
+  }
+
+  #reservations-number {
+    color: blue;
+  }
+
+  #active-cards-section, #non-active-cards-section {
+    margin-top: 1.5rem;
+
+    div.card {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media screen and (min-width: 320px) {
+    #reservations-main-text { font-size: 18px; }
+  }
+
+  @media screen and (min-width: 480px) {
+    #reservations-main-text { font-size: 28px; }
+  }
+
+  @media screen and (min-width: 640px) {
+    #reservations-main-text { font-size: 38px; }
+  }
+
+  @media screen and (min-width: 1024px) {
+    #reservations-main-text { font-size: 48px; }
+  }
+}

@@ -1,0 +1,85 @@
+.card.non-active-card {
+  border-radius: 8px !important;
+  background-color: white !important;
+
+  .card-body {
+    display: flex;
+    align-items: center;
+    color: black;
+    padding: 0.6rem 0.4rem;
+
+    #coupon-column{
+      margin-top: -35px;
+      padding-left: 0px;
+
+      #coupon-icon {
+        width: 33px;
+        height: 22px;
+        opacity: .2;
+      }
+    }
+
+    .card-column {
+      display: inline-block;
+      padding-left: 5px;
+      padding-right: 0px;
+
+      .row {
+        margin-left: 0px;
+
+        #reservation-name {
+          font-weight: 450;
+          font-size: 1.1rem;
+          margin-bottom: 0px;
+          color: #484b4d;
+        }
+
+        #reservation-code {
+          font-size: .7rem;
+          color: #484b4d;
+          opacity: .7;
+        }
+
+        .badge {
+          font-weight: bold;
+
+          label {
+            margin: 0.2rem 0.7rem;
+          }
+        }
+
+        #badge-entrance-hour {
+          background-color: #7bb9fc;
+        }
+
+        #badge-date {
+          background-color: white;
+          color: #7bb9fc;
+          margin-left: 0.8rem;
+
+          label {
+              margin: 0.2rem 0rem;
+          }
+        }
+      }
+
+      .btn {
+        width: 80px;
+        margin-right: 0px;
+      }
+
+      .btn-outline-primary {
+        border-color: #1477e1;
+        margin-bottom: 0.25rem;
+      }
+
+      .btn-outline-primary:hover {
+        background-color: #1477e1;
+      }
+
+      .btn-outline-danger {
+          margin-top: 0.25rem;
+      }
+    }
+  }
+}

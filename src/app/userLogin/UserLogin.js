@@ -1,8 +1,26 @@
 import React from 'react';
+import firebase from 'firebase';
 import './UserLogin.scss';
 import LoginForm from './../components/loginForm/LoginForm';
 
 export default class UserLogin extends React.Component {
+
+  login = ( userName, password ) => {
+    firebase.database().ref(`users/borrowers/${userName}`).once('value')
+      .then( snapshot => {
+        const userInfo = snapshot.val()
+
+        if ( userInfo ) {
+          localStorage.setItem("isLogin", "true");
+          localStorage.setItem("user", userName);
+
+          this.props.history.push('/user/reservations');
+        } else {
+          alert(`No se encontro al usuario ${userName} con las contraseña ${password}`);
+        }
+
+      } );
+  }
 
   render() {
     return (
@@ -13,7 +31,7 @@ export default class UserLogin extends React.Component {
           Nosotoros nos encargamos de tu
           estacionamiento.
         </span>
-        <LoginForm />
+        <LoginForm send={this.login} />
       </div>
     );
   }
