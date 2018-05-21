@@ -28,7 +28,7 @@ export default class UserLogin extends React.Component {
         <h1>parkin</h1>
         <span className="welcome">Bienvenido,</span>
         <span className="welcome-quote">
-          Nosotoros nos encargamos de tu
+          Nosotros nos encargamos de tu
           estacionamiento.
         </span>
         <LoginForm send={this.login} />
