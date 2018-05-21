@@ -14,6 +14,12 @@ export default class ReservationConfirmModal extends React.Component {
           <h5>Reservación</h5>
           <div>Jueves 15 Mayo 5:00 pm</div>
         </div>
+          <div className="icons-container">
+            <i class="fas fa-shield-alt"></i>
+            <i class="fas fa-home"></i>
+            <i class="far fa-clock disabled"></i>
+            <i class="fas fa-car disabled"></i>
+          </div>
       </div>
     );
   }

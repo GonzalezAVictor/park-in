@@ -32,7 +32,7 @@ export default class AssociateLogin extends React.Component {
           Nosotoros nos encargamos de tu
           estacionamiento.
         </span>
-        <LoginForm send={this.login} />
+        <LoginForm send={this.login} cityBlack />
       </div>
     );
   }

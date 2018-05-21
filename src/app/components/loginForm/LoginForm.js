@@ -1,5 +1,7 @@
 import React from 'react';
 import './LoginForm.scss';
+import cityImageWhite from "./../../assets/city-white.png";
+import cityImageBlack from "./../../assets/city-black.png";
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -33,7 +35,7 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
-    let { register } = this.props;
+    let { register, cityBlack } = this.props;
     return (
       <div className="login-form">
         <form  onSubmit={this.handleSubmit}>
@@ -63,6 +65,9 @@ export default class LoginForm extends React.Component {
             value={register ? "Registrar" : "Iniciar"}
           />
         </form>
+        {
+          cityBlack ? <img className="cityImage" src={cityImageBlack} alt=""/> : <img className="cityImage" src={cityImageWhite} alt=""/>
+        }
       </div>
     );
   }
