@@ -9,6 +9,7 @@ export default class SearchDetailsModal extends React.Component {
   onReserve = () => {
     const user = "Mobile";
     const {email, ownerRef, place, address, price, owner} = this.props;
+    let {spotsNumber} = this.props 
     console.log(this.props);
     
     ownerRef.once('value')
@@ -48,6 +49,9 @@ export default class SearchDetailsModal extends React.Component {
 
           borrowerRef.set(reservations)
         } )
+        console.log(spotsNumber);
+        
+        firebase.database().ref(`parking_lots/${place}`).update( {spotsNumber: spotsNumber--} )
 
       } );
     

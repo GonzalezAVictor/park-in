@@ -26,6 +26,7 @@ const MyMapComponent = compose(
     componentWillMount() {
       const refs = {}
       this.trigguerButton = null;
+
       this.setState({
         bounds: null,
         places: {},
@@ -107,6 +108,16 @@ const MyMapComponent = compose(
             this.setState({points: snap.val(), modalDisabled: false})
           } )
         },
+        getAllPoints: () => {
+          const marks = [];
+
+          firebase.database().ref(`parking_lots`).once('value')
+            .then( snap => {
+              console.log( snap.val() );
+              const points = snap.val();
+              this.setState({points})
+            } )
+        },
         getPoints: () => {
           const {points} = this.state
           const marks = [];
@@ -183,7 +194,7 @@ const MyMapComponent = compose(
 
       {props.getPoints()}
       {props.getPlaceDetails()}
-      { }
+      
     {props.markers.map((marker, index) => <Marker key={index} position={marker.position} />)}
   </GoogleMap>
 );
