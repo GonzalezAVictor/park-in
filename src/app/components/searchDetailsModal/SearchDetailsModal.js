@@ -1,10 +1,19 @@
 import React from 'react';
 import firebase from 'firebase';
+import {Redirect} from 'react-router-dom';
 
 //Style
 require('./SearchDetailsModal.scss');
 
 export default class SearchDetailsModal extends React.Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      success: false,
+    }
+  }
 
   onReserve = () => {
     const user = "Mobile";
@@ -23,8 +32,8 @@ export default class SearchDetailsModal extends React.Component {
           'address': address,
           'place': place,
           'id': code,
-          'date': '15-May',
-          'entranceHour': '14:00',
+          'date': '21-May',
+          'entranceHour': '22:00',
           'price': price,
           'finalized': false
         };
@@ -40,9 +49,9 @@ export default class SearchDetailsModal extends React.Component {
           reservations.push( {
             'active': false,
             'code': code,
-            'date': '15-May',
+            'date': '21-May',
             'email': email,
-            'entranceHour': '14:00',
+            'entranceHour': '22:00',
             'finalized': false,
             'user': user
           } )
@@ -50,9 +59,10 @@ export default class SearchDetailsModal extends React.Component {
           borrowerRef.set(reservations)
         } )
         console.log(spotsNumber);
+        this.setState({ success: true })
         
         firebase.database().ref(`parking_lots/${place}`).update( {spotsNumber: spotsNumber--} )
-
+       
       } );
     
 
@@ -60,8 +70,18 @@ export default class SearchDetailsModal extends React.Component {
   }
 
   render() {
-    const {visible} = this.props;
+    const {visible, address, place} = this.props;
+    const {success} = this.state;
     const display = visible ? {} : {display: 'none'};
+    const redirect = success ? <Redirect to={{
+      pathname: '/reservation-confirm',
+      state: {
+        address,
+        place,
+        date: '21-May',
+        entranceHour: '22:00'
+      }
+    }} /> : ''
 
     return (
         <div className="testeroni" style={display}>
@@ -109,6 +129,8 @@ export default class SearchDetailsModal extends React.Component {
               <button type="button" class="btn btn-primary btn-block" onClick={this.onReserve}>Reservar</button>
             </div>
           </div>
+
+          {redirect}
         </div>
     );
   }
