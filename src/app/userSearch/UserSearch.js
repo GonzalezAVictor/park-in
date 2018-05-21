@@ -29,6 +29,7 @@ const MyMapComponent = compose(
       this.setState({
         bounds: null,
         places: {},
+        modalDisabled: false,
         placeSelected: {},
         points: {},
         center: {
@@ -70,7 +71,7 @@ const MyMapComponent = compose(
           // refs.map.fitBounds(bounds);
         },
         getPlaceDetails: ()=>{
-          const {placeSelected} = this.state
+          const {placeSelected, modalDisabled} = this.state
           let {owner, place, price, address, spotsNumber, startHour, finishHour} = placeSelected
 
           const user = localStorage.getItem("user")
@@ -87,6 +88,7 @@ const MyMapComponent = compose(
 
           return (
             <SearchDetailsModal 
+              visible={modalDisabled}
               price={price}
               place={place}
               address={address}
@@ -102,7 +104,7 @@ const MyMapComponent = compose(
         handleInput: (e) => {
           firebase.database().ref('parking_lots').endAt(e.target.value)
           .on('value', snap => {
-            this.setState({points: snap.val()})
+            this.setState({points: snap.val(), modalDisabled: false})
           } )
         },
         getPoints: () => {
@@ -115,7 +117,7 @@ const MyMapComponent = compose(
                 const element = points[key]
                 marks.push( 
                   (<MarkerWithLabel
-                    onClick={ ()=>{ this.setState({placeSelected: element}) } }
+                    onClick={ ()=>{ this.setState({placeSelected: element, modalDisabled: true}) } }
                     key={`${element.lat}/${element.lng}`}
                     position={{ lat: element.lat, lng: element.lng }}
                     labelAnchor={new google.maps.Point(0, 0)}
