@@ -4,6 +4,7 @@ import firebase from 'firebase'
 //Components
 import ActivePartnerReservationsCard from '../components/activePartnerReservationsCard/ActivePartnerReservationsCard';
 import PartnerReservationsCard from '../components/partnerReservationsCard/PartnerReservationsCard';
+import AssociateFooterNavbar from '../components/associateFooterNavbar/AssociateFooterNavbar';
 
 //Style
 require('./PartnerReservations.scss');
@@ -105,17 +106,22 @@ export default class PartnerReservations extends React.Component {
     let reservationsNumber = activeReservations.length + reservations.length;
 
     return (
-      <div className="partner-reservations">
-        <label id="reservations-main-text" className="mt-5">Tus reservaciones <label id="reservations-number">({reservationsNumber})</label></label>
+      <div>
+        <div className="partner-reservations" style={{height: '92vh'}}>
+          <label id="reservations-main-text" className="mt-5">Tus reservaciones <label id="reservations-number">({reservationsNumber})</label></label>
 
-        <div id="active-cards-section">
-          {activeReservations}
-        </div>
+          <div id="active-cards-section">
+            {activeReservations}
+          </div>
         
-        <div id="non-active-cards-section">
-          {reservations}
+          <div id="non-active-cards-section">
+            {reservations}
+          </div>
         </div>
+
+        <AssociateFooterNavbar />
       </div>
+      
     );
   }
 }

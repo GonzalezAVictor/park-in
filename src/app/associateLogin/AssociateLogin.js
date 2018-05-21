@@ -15,7 +15,7 @@ export default class AssociateLogin extends React.Component {
           localStorage.setItem("user", userName);
           localStorage.setItem("userType", "partner");
 
-          this.props.history.push('/partner/reservations');
+          this.props.history.push('/associate/parklot/register');
         } else {
           alert(`No se encontro al usuario ${userName} con las contraseña ${password}`);
         }

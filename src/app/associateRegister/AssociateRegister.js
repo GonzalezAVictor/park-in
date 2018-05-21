@@ -17,7 +17,7 @@ export default class AssociateRegister extends React.Component {
     localStorage.setItem("user", userName);
     localStorage.setItem("userType", "partner");
 
-    this.props.history.push('/partner/reservations');
+    this.props.history.push('/associate/parklot/register');
   }
 
   render() {
