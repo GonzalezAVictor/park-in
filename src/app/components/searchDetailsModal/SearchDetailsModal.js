@@ -13,6 +13,8 @@ export default class SearchDetailsModal extends React.Component {
     
     ownerRef.once('value')
       .then( snapshot => {
+        console.log(snapshot.val());
+        
         let reservations = snapshot.val();
         const code = `C0D3${Math.floor((Math.random() * 1000) + 1)}`;
         reservations[code] = {

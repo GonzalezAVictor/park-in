@@ -10,7 +10,8 @@ export default class UserRegister extends React.Component {
     firebase.database().ref(`users/borrowers/${userName}`).set( {
       userName,
       email,
-      password
+      password,
+      history: {1:{active: false}}
     } );
 
     localStorage.setItem("isLogin", "true");
