@@ -48,7 +48,6 @@ export default class RegisterParkLot extends React.Component {
     const user = localStorage.getItem("user");
 
     firebase.database().ref(`users/owners/${user}/lots`).once( 'value', snapshot => {
-      console.log(snapshot.val());
       const parkinLot = snapshot.val()[0]
 
       firebase.database().ref(`parking_lots/${parkinLot}`).once('value', snap => {
