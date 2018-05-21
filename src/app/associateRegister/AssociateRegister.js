@@ -24,7 +24,7 @@ export default class AssociateRegister extends React.Component {
     return (
       <div className="associate-login">
         <h1>parkin <span>socio</span></h1>
-        <LoginForm register send={this.registerNewAssociate} />
+        <LoginForm register send={this.registerNewAssociate} cityBlack />
       </div>
     );
   }
