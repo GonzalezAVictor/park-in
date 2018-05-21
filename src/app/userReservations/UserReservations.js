@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'bootstrap';
+import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 //Components
@@ -47,14 +48,24 @@ export default class UserReservations extends React.Component {
 
     reservations.map( reservation => 
       reservationsCard.push((
-        <UserReservationsCard 
-          key={reservation.id}
-          place={reservation.place}
-          address={reservation.address}
-          entranceHour={`${reservation.entranceHour}pm`}
-          date={reservation.date}
-          price={`$${reservation.price}/hr`}
-        />
+        <Link to={{
+          pathname: '/reservation-confirm', 
+          state:{
+            code: reservation.code,
+            place: reservation.place,
+            address: reservation.address,
+            entranceHour: reservation.entranceHour,
+            date: reservation.date}}}>
+          <UserReservationsCard 
+            key={reservation.id}
+            place={reservation.place}
+            address={reservation.address}
+            entranceHour={`${reservation.entranceHour}pm`}
+            date={reservation.date}
+            price={`$${reservation.price}/hr`}
+          />
+        </Link>
+        
       )));
     
     return reservationsCard;

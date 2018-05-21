@@ -1,18 +1,19 @@
 import React from 'react';
+import QRCode from 'qrcode.react';
 
 export default class ReservationConfirmModal extends React.Component {
 
   render() {
+    const {address, date, entranceHour, place} = this.props.reservation;
+
     return (
       <div className="reservation-confirm-modal">
-        <h3>Estacionamiento</h3>
-        <h3>Santa Anita</h3>
-        <div className="address">Calle 62 238 Mérida Centro 92345</div>
-        <img src="asda" alt="asds"/>
-        <div className="qr-string">lksdmvk233</div>
+        <h3>{place}</h3>
+        <div className="address">{address}</div>
+        <QRCode style={{display: 'block', margin: 'auto', marginTop: '10px', marginBottom: '10px'}} value={address} />
         <div className="date-info">
           <h5>Reservación</h5>
-          <div>Jueves 15 Mayo 5:00 pm</div>
+          <div>{`${date} ${entranceHour}`}</div>
         </div>
           <div className="icons-container">
             <i class="fas fa-shield-alt"></i>
