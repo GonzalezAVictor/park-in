@@ -17,7 +17,7 @@ export default class SearchDetailsModal extends React.Component {
 
   onReserve = () => {
     const user = "Mobile";
-    const {email, ownerRef, place, address, price, owner} = this.props;
+    const {email, ownerRef, place, address, price, owner, entranceHour} = this.props;
     let {spotsNumber} = this.props 
     console.log(this.props);
     
@@ -33,7 +33,7 @@ export default class SearchDetailsModal extends React.Component {
           'place': place,
           'id': code,
           'date': '21-May',
-          'entranceHour': '22:00',
+          'entranceHour': entranceHour,
           'price': price,
           'finalized': false
         };
@@ -51,7 +51,7 @@ export default class SearchDetailsModal extends React.Component {
             'code': code,
             'date': '21-May',
             'email': email,
-            'entranceHour': '22:00',
+            'entranceHour': entranceHour,
             'finalized': false,
             'user': user
           } )
@@ -70,7 +70,7 @@ export default class SearchDetailsModal extends React.Component {
   }
 
   render() {
-    const {visible, address, place} = this.props;
+    const {visible, address, place, entranceHour} = this.props;
     const {success} = this.state;
     const display = visible ? {} : {display: 'none'};
     const redirect = success ? <Redirect to={{
@@ -79,7 +79,7 @@ export default class SearchDetailsModal extends React.Component {
         address,
         place,
         date: '21-May',
-        entranceHour: '22:00'
+        entranceHour: entranceHour
       }
     }} /> : ''
 

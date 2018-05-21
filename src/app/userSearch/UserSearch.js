@@ -30,6 +30,7 @@ const MyMapComponent = compose(
       this.setState({
         bounds: null,
         places: {},
+        hourSelcted: '',
         modalDisabled: false,
         placeSelected: {},
         points: {},
@@ -71,8 +72,11 @@ const MyMapComponent = compose(
           });
           // refs.map.fitBounds(bounds);
         },
+        setHour: (hour) => {
+          this.setState({hourSelcted: hour});
+        },
         getPlaceDetails: ()=>{
-          const {placeSelected, modalDisabled} = this.state
+          const {placeSelected, modalDisabled, hourSelcted} = this.state
           let {owner, place, price, address, spotsNumber, startHour, finishHour} = placeSelected
 
           const user = localStorage.getItem("user")
@@ -90,6 +94,7 @@ const MyMapComponent = compose(
           return (
             <SearchDetailsModal 
               visible={modalDisabled}
+              entranceHour={hourSelcted}
               price={price}
               place={place}
               address={address}
@@ -194,6 +199,13 @@ const MyMapComponent = compose(
 
       {props.getPoints()}
       {props.getPlaceDetails()}
+
+      <div className="hours">
+        <span onClick={ () => { props.setHour('20:00') } }>20:00</span>
+        <span onClick={ () => { props.setHour('21:00') } }>21:00</span>
+        <span onClick={ () => { props.setHour('22:00') } }>22:00</span>
+        <span onClick={ () => { props.setHour('23:00') } }>23:00</span>
+      </div>
       
     {props.markers.map((marker, index) => <Marker key={index} position={marker.position} />)}
   </GoogleMap>
