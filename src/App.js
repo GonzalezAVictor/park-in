@@ -11,6 +11,8 @@ import UserRegister from './app/userRegister/UserRegister';
 import ReservationConfirm from './app/reservationConfirm/ReservationConfirm';
 import AssociateParkLotRegister from './app/associateRegisterParkLot/RegisterParkLot';
 
+import './index.scss';
+
 class App extends Component {
   render() {
     return (
