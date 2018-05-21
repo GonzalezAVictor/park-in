@@ -1,9 +1,58 @@
 import React from 'react';
+import firebase from 'firebase';
 
 //Style
 require('./SearchDetailsModal.scss');
 
 export default class SearchDetailsModal extends React.Component {
+
+  onReserve = () => {
+    const user = "Mobile";
+    const {email, ownerRef, place, address, price, owner} = this.props;
+    console.log(this.props);
+    
+    ownerRef.once('value')
+      .then( snapshot => {
+        let reservations = snapshot.val();
+        const code = `C0D3${Math.floor((Math.random() * 1000) + 1)}`;
+        reservations[code] = {
+          'active': false,
+          'address': address,
+          'place': place,
+          'id': code,
+          'date': '15-May',
+          'entranceHour': '14:00',
+          'price': price,
+          'finalized': false
+        };
+        
+        ownerRef.set(reservations);
+
+        const borrowerRef = firebase.database().ref(`users/owners/${owner}/history`)
+        borrowerRef.once('value')
+        .then( snapshot => {
+          console.log(snapshot.val());
+          
+          let reservations = snapshot.val();
+          reservations.push( {
+            'active': false,
+            'code': code,
+            'date': '15-May',
+            'email': email,
+            'entranceHour': '14:00',
+            'finalized': false,
+            'user': user
+          } )
+
+          borrowerRef.set(reservations)
+        } )
+
+      } );
+    
+
+
+  }
+
   render() {
     let shieldOption = false;
     let houseOption = false;
@@ -60,7 +109,7 @@ export default class SearchDetailsModal extends React.Component {
                   <a href="#"><img class="icon-disable" id="car-icon" src={require('../../assets/car.png')} /></a>
                 </div>
                 <div class="row justify-content-center">
-                  <button type="button" class="btn btn-primary btn-block">Reservar</button>
+                  <button type="button" class="btn btn-primary btn-block" onClick={this.onReserve}>Reservar</button>
                 </div>
               </div>
 

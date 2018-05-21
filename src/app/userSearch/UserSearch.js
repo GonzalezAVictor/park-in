@@ -8,6 +8,7 @@ import _ from 'lodash';
 //Components
 import SearchBox from 'react-google-maps/lib/components/places/SearchBox';
 import MarkerWithLabel from "react-google-maps/lib/components/addons/MarkerWithLabel";
+import SearchDetailsModal from '../components/searchDetailsModal/SearchDetailsModal';
 import FooterNavbar from '../reservationConfirm/FooterNavbar';
 
 //Style
@@ -24,7 +25,7 @@ const MyMapComponent = compose(
   lifecycle({
     componentWillMount() {
       const refs = {}
-
+      this.trigguerButton = null;
       this.setState({
         bounds: null,
         places: {},
@@ -68,6 +69,36 @@ const MyMapComponent = compose(
           });
           // refs.map.fitBounds(bounds);
         },
+        getPlaceDetails: ()=>{
+          const {placeSelected} = this.state
+          let {owner, place, price, address, spotsNumber, startHour, finishHour} = placeSelected
+
+          const user = localStorage.getItem("user")
+          const email = `${user}@correo.com`
+          const userRef = firebase.database().ref(`users/borrowers/${user}/history`)
+
+          owner = owner || ""
+          place = place || ""
+          price = price || ""
+          address = address || ""
+          spotsNumber = spotsNumber || ""
+          startHour = startHour || ""
+          finishHour = finishHour || ""
+
+          return (
+            <SearchDetailsModal 
+              price={price}
+              place={place}
+              address={address}
+              startHour={startHour}
+              finishHour={finishHour}
+              spotsNumber={spotsNumber}
+              owner={owner}
+              email={email}
+              ownerRef={userRef}
+            />
+          )
+        },
         handleInput: (e) => {
           firebase.database().ref('parking_lots').endAt(e.target.value)
           .on('value', snap => {
@@ -84,9 +115,12 @@ const MyMapComponent = compose(
                 const element = points[key]
                 marks.push( 
                   (<MarkerWithLabel
+                    onClick={ ()=>{ this.setState({placeSelected: element}) } }
                     key={`${element.lat}/${element.lng}`}
                     position={{ lat: element.lat, lng: element.lng }}
                     labelAnchor={new google.maps.Point(0, 0)}
+                    data-toggle="modal" 
+                    data-target="#myModal"
                     labelStyle={{
                       backgroundColor: "#0069d9", 
                       fontSize: "20px", 
@@ -146,6 +180,8 @@ const MyMapComponent = compose(
       </SearchBox>
 
       {props.getPoints()}
+      {props.getPlaceDetails()}
+      { }
     {props.markers.map((marker, index) => <Marker key={index} position={marker.position} />)}
   </GoogleMap>
 );

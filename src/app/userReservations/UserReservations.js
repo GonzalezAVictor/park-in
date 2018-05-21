@@ -5,6 +5,7 @@ import firebase from 'firebase';
 //Components
 import UserReservationsCard from '../components/userReservationsCard/UserReservationsCard';
 import FooterNavbar from '../reservationConfirm/FooterNavbar';
+import SearchDetailsModal from '../components/searchDetailsModal/SearchDetailsModal';
 
 //Style
 require('./UserReservations.scss');
